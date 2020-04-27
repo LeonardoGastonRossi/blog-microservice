@@ -1,0 +1,59 @@
+version: "3"
+services:
+  client:
+    container_name: client
+    image: leonardorossi/client
+    build:
+      context: ./client
+    ports:
+      - 3000:3000
+    networks:
+      - blog
+  posts:
+    container_name: posts
+    image: leonardorossi/posts
+    build:
+      context: ./posts
+    ports:
+      - 4000:4000
+    networks:
+      - blog
+  comments:
+    container_name: comments
+    image: leonardorossi/comments
+    build:
+      context: ./comments
+    ports:
+      - 4001:4001
+    networks:
+      - blog
+  query:
+    container_name: query
+    image: leonardorossi/query
+    build:
+      context: ./query
+    ports:
+      - 4002:4002
+    networks:
+      - blog
+  moderation:
+    container_name: moderation
+    image: leonardorossi/moderation
+    build:
+      context: ./moderation
+    ports:
+      - 4003:4003
+    networks:
+      - blog
+  event_bus:
+    container_name: event_bus
+    image: leonardorossi/event-bus
+    build:
+      context: ./event-bus
+    ports:
+      - 4005:4005
+    networks:
+      - blog
+
+networks:
+  blog:
